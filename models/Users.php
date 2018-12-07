@@ -1,6 +1,7 @@
 <?php
-  require_once(dirname(__FILE__) . '/../helpers/db-connection.php');
+  require_once('../includes/DBConnection.php');
 
+  $connection = createDBConnection();
   $sql = '
     CREATE TABLE `users` (
       `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -13,8 +14,11 @@
     );
   ';
 
-  if ($connection->query($sql) === true) {
+  if ($connection->query($sql) == true)
+  {
     echo('Users table created successfully!');
-  } else {
+  }
+  else {
     echo('Error creating table: ' . $connection->error);
   }
+

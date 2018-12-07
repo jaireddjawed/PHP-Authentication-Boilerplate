@@ -3,15 +3,15 @@
 
   $connection = createDBConnection();
   $sql = '
-    CREATE TABLE `login_attempts` (
+    CREATE TABLE `password_resets` (
       `user_id` INT(11) NOT NULL,
-      `time` VARCHAR(30) NOT NULL
+      `token` VARCHAR(32) NOT NULL
     );
   ';
 
   if ($connection->query($sql) == true)
   {
-    echo('Login Attempts table created successfully!');
+    echo('Password resets table created successfully!');
   }
   else {
     echo('Error creating table: ' . $connection->error);

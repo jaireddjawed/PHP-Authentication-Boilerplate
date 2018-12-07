@@ -1,5 +1,7 @@
 <?php
-  class PageTemplate {
+  class PageTemplate
+  {
     public $pagetitle;
+    public $pageheader;
     public $body;
   }
