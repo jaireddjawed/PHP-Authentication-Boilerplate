@@ -81,6 +81,16 @@
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
+    $csrfFormToken = filter_input(INPUT_POST, 'csrf-token', FILTER_SANITIZE_STRING);
+    $sessionCsrfToken = $_SESSION['csrf_token'];
+  
+    // Verify the CSRF Token is correct
+    if ($csrfFormToken != $sessionCsrfToken)
+    {
+      echo('Invalid Csrf Token!');
+      exit;
+    }
+ 
     // Validate the email address
     $emailAddress = filter_input(INPUT_POST, 'email-address', FILTER_SANITIZE_EMAIL);
     if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL))
