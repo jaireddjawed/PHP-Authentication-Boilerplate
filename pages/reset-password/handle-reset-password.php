@@ -72,6 +72,16 @@
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
+    $csrfFormToken = filter_input(INPUT_POST, 'csrf-token', FILTER_SANITIZE_STRING);
+    $sessionCsrfToken = $_SESSION['csrf_token'];
+  
+    // Verify the CSRF Token is correct
+    if ($csrfFormToken != $sessionCsrfToken)
+    {
+      echo('Invalid Csrf Token!');
+      exit;
+    }
+
     $passwordToken = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
     $newPassword = filter_input(INPUT_POST, 'hashed-password', FILTER_SANITIZE_STRING);
 
