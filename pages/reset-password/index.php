@@ -1,5 +1,6 @@
 <?php
   require_once('../../includes/PageTemplate.php');
+  require_once('../../includes/CsrfToken.php');
 
   $currentDirectory = '/pages/' . basename(__DIR__);
 
@@ -29,6 +30,7 @@
         <label class="control-label">Confirm New Password</label>
         <input type="password" name="confirm-new-password" placeholder="Confirm New Password" class="form-control" required />
       </div>
+      <input type="hidden" name="csrf-token" value="<?= $_SESSION['csrf_token'] ?>" />
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
       </div>
